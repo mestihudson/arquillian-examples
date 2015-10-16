@@ -64,23 +64,23 @@ public class GamePersistenceTest {
             .addAsManifestResource("test-persistence.xml", "persistence.xml")
             .addAsManifestResource("jbossas-ds.xml")
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
-        
+
         // choose your packaging here
-        return jar;
+        return war;
     }
- 
+
     private static final String[] GAME_TITLES = {
         "Super Mario Brothers",
         "Mario Kart",
         "F-Zero"
     };
-    
+
     @PersistenceContext
     EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
- 
+
     @Before
     public void preparePersistenceTest() throws Exception {
         clearData();
@@ -113,12 +113,12 @@ public class GamePersistenceTest {
         utx.begin();
         em.joinTransaction();
     }
-    
+
     @After
     public void commitTransaction() throws Exception {
         utx.commit();
     }
-    
+
     @Test
     public void shouldFindAllGamesUsingJpqlQuery() throws Exception {
         // given
@@ -132,13 +132,13 @@ public class GamePersistenceTest {
         System.out.println("Found " + games.size() + " games (using JPQL):");
         assertContainsAllGames(games);
     }
-    
+
     @Test
     public void shouldFindAllGamesUsingCriteriaApi() throws Exception {
         // given
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Game> criteria = builder.createQuery(Game.class);
-                
+
         Root<Game> game = criteria.from(Game.class);
         criteria.select(game);
         // TIP: If you don't want to use the JPA 2 Metamodel,
@@ -154,7 +154,7 @@ public class GamePersistenceTest {
         System.out.println("Found " + games.size() + " games (using Criteria):");
         assertContainsAllGames(games);
     }
-    
+
     private static void assertContainsAllGames(Collection<Game> retrievedGames) {
         Assert.assertEquals(GAME_TITLES.length, retrievedGames.size());
         final Set<String> retrievedGameTitles = new HashSet<String>();
