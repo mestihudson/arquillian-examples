@@ -198,7 +198,7 @@
                         <directory>src/test/resources-jbossas-managed</directory>
                     </testResource>
                 </testResources>
-                <plugins>
+                <!-- <plugins>
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <executions>
@@ -223,7 +223,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
+                </plugins> -->
             </build>
         </profile>
         <profile>

@@ -7,15 +7,17 @@
     <persistence-unit name="test">
         <!-- Use this jta-data-source if you're testing on JBoss AS 7.1 (setup by jbossas-ds.xml) -->
         <jta-data-source>jdbc/arquillian</jta-data-source>
-        
+
         <!-- Use this jta-data-source if you're testing on JBoss AS 7.0 -->
         <!-- Optionally, you can setup a DataSource with this name in your JBoss AS 7.0 installation -->
-        <!-- 
+        <!--
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
         -->
         <properties>
-            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

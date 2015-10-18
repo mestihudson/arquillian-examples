@@ -66,6 +66,9 @@ public class GamePersistenceTest {
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 
         // choose your packaging here
+
+        System.out.println(war.toString(true));
+
         return war;
     }
 
